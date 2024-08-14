@@ -141,7 +141,7 @@ spec:
       name: Afficher le nom d'utilisateur
       action: debug:log
       input:
-        message: "Ce template a été exécuté par {{ context.user }}."
+        message: "Ce template a été exécuté par ${{ context.user }}."
 
     - id: replace-dots
       name: Modify java_package_name
