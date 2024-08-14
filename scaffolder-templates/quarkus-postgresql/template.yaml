@@ -146,7 +146,8 @@ spec:
         regExps:
           - pattern: '\\.'
             replacement: '/'
-            global: true
+            flags:
+              - g
       output:
         java_package_name_dir: '{{ steps.replace-dots.output }}'
 
