@@ -142,14 +142,17 @@ spec:
       name: Modify java_package_name
       action: regex:replace
       input:
-        content: '{{ parameters.java_package_name }}'
+        # content: '{{ parameters.java_package_name }}'
         regExps:
           - pattern: '\\.'
             replacement: '/'
             flags:
               - g
-      output:
-        java_package_name_dir: '{{ steps.replace-dots.output }}'
+            values:
+              - key: java_package_name
+                value: '{{ parameters.java_package_name }}'
+      # output:
+      #   java_package_name_dir: '{{ steps.replace-dots.output }}'
 
     - id: template
       name: Fetch Skeleton + Template
@@ -165,7 +168,8 @@ spec:
           group_id: ${{ parameters.group_id }}
           artifact_id: ${{ parameters.artifact_id }}
           java_package_name: ${{ parameters.java_package_name }}
-          java_package_name_dir: ${{ steps.replace-dots.output.java_package_name_dir }}
+          # java_package_name_dir: ${{ steps.replace-dots.output.java_package_name_dir }}
+          java_package_name_dir: ${{ steps.replace-dots.values.java_package_name }}
           owner: ${{ user.entity.metadata.name }}
           cluster: .apps.cluster-rw97m.sandbox266.opentlc.com
           host: ${{ parameters.repo.host }}
