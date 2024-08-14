@@ -18,10 +18,9 @@ spec:
         - component_id
         - java_package_name
         - api_endpoint
-        - system
+        # - system
         - group_id
         - artifact_id
-        - user
       properties:
         component_id:
           title: Name
