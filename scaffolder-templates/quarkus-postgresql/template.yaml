@@ -137,11 +137,11 @@ spec:
                 - disabled
 
   steps:
-    - id: log-username
-      name: Afficher le nom d'utilisateur
-      action: debug:log
-      input:
-        message: "Ce template a été exécuté par user.entity.metadata.name = ${{ user.entity.metadata.name }}."
+    # - id: log-username
+    #   name: Afficher le nom d'utilisateur
+    #   action: debug:log
+    #   input:
+    #     message: "Ce template a été exécuté par user.entity.metadata.name = ${{ user.entity.metadata.name }}."
 
     - id: replace-dots
       name: Modify java_package_name
@@ -163,13 +163,7 @@ spec:
       name: debug printing
       action: debug:log
       input:
-        message: "{{ steps.replace-dots.values.java_package_name }}"
-
-    - id: debug02
-      name: user printing
-      action: debug:log
-      input:
-        message: "{{ context.user }} / ${{ context.user }}"
+        message: "${{ steps.replace-dots.values.java_package_name }}"
 
     - id: template
       name: Fetch Skeleton + Template
@@ -181,7 +175,7 @@ spec:
         values:
           component_id: ${{ parameters.component_id }}
           description: ${{ parameters.description }}
-          namespace: '{{ context.user }}-${{ parameters.component_id }}-dev'
+          namespace: '${{ user.entity.metadata.name }}-${{ parameters.component_id }}-dev'
           group_id: ${{ parameters.group_id }}
           artifact_id: ${{ parameters.artifact_id }}
           java_package_name: ${{ parameters.java_package_name }}
@@ -190,18 +184,18 @@ spec:
           owner: ${{ user.entity.metadata.name }}
           cluster: .apps.cluster-rw97m.sandbox266.opentlc.com
           host: ${{ parameters.repo.host }}
-          destination: '{{ context.user }}/${{ parameters.component_id }}'
+          destination: '${{ user.entity.metadata.name }}/${{ parameters.component_id }}'
           quay_destination: ${{ parameters.image_organization}}/${{ parameters.component_id }}
           port: 8080
           verify_commits: ${{ parameters.repo.verify_commits }}
           api_endpoint: ${{ parameters.api_endpoint }}
-          system: '{{ context.user }}-${{ parameters.system }}'
+          system: '${{ user.entity.metadata.name }}-${{ parameters.system }}'
 
     - id: publish
       name: Publish
       action: publish:gitlab
       input:
-        repoUrl: "${{ parameters.repo.host }}?owner={{ context.user }}&repo=${{parameters.component_id}}"
+        repoUrl: "${{ parameters.repo.host }}?owner=${{ user.entity.metadata.name }}&repo=${{parameters.component_id}}"
         repoVisibility: public
 
     - id: register
@@ -220,10 +214,10 @@ spec:
         values:
           component_id: ${{ parameters.component_id }}
           description: ${{ parameters.description }}
-          destination: https://${{ parameters.repo.host }}/{{ context.user }}/${{parameters.component_id}}-gitops.git
-          source_repository: https://${{ parameters.repo.host }}/{{ context.user }}/${{parameters.component_id}}.git
+          destination: https://${{ parameters.repo.host }}/${{ user.entity.metadata.name }}/${{parameters.component_id}}-gitops.git
+          source_repository: https://${{ parameters.repo.host }}/${{ user.entity.metadata.name }}/${{parameters.component_id}}.git
           repository_name: ${{parameters.component_id}}
-          git_owner: '{{ context.user }}'
+          git_owner: '${{ user.entity.metadata.name }}'
           cluster: .apps.cluster-rw97m.sandbox266.opentlc.com
           namespace: ${{ parameters.component_id }}-dev
           image_registry: ${{ parameters.image_registry }}
@@ -242,7 +236,7 @@ spec:
       name: Publishing to Resource Repository
       action: publish:gitlab
       input:
-        repoUrl: "${{ parameters.repo.host }}?owner={{ context.user }}&repo=${{parameters.component_id}}-gitops"
+        repoUrl: "${{ parameters.repo.host }}?owner=${{ user.entity.metadata.name }}&repo=${{parameters.component_id}}-gitops"
         title: gitops resources for ${{ parameters.component_id }}
         description: gitops resources for ${{ parameters.component_id }}
         sourcePath: ./tenant-gitops
@@ -255,7 +249,7 @@ spec:
         appName: ${{ parameters.component_id }}-bootstrap
         argoInstance: main
         namespace: janus-argocd
-        repoUrl: 'https://${{ parameters.repo.host }}/{{ context.user }}/${{ parameters.component_id }}-gitops.git'
+        repoUrl: 'https://${{ parameters.repo.host }}/${{ user.entity.metadata.name }}/${{ parameters.component_id }}-gitops.git'
         path: 'argocd/'
 
   output:
