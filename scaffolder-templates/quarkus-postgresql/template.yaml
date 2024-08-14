@@ -169,7 +169,7 @@ spec:
       name: user printing
       action: debug:log
       input:
-        message: "{{ context.user }}"
+        message: "{{ context.user }} / ${{ context.user }}"
 
     - id: template
       name: Fetch Skeleton + Template
