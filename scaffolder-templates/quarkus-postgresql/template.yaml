@@ -32,7 +32,7 @@ spec:
         group_id:
           title: Group Id
           type: string
-#          default: redhat.janus
+          default: io.quarkus.workshop
           description: Maven Group Id
         artifact_id:
           title: Artifact Id
