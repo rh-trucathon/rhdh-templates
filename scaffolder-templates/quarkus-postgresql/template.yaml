@@ -159,11 +159,11 @@ spec:
         values:
           component_id: ${{ parameters.component_id }}
           description: ${{ parameters.description }}
-          namespace: {{ context.user }}/${{ parameters.component_id }}-dev
+          namespace: ${{ context.user }}/${{ parameters.component_id }}-dev
           group_id: ${{ parameters.group_id }}
           artifact_id: ${{ parameters.artifact_id }}
           java_package_name: ${{ parameters.java_package_name }}
-          java_package_name_dir: {{ steps.replace-dots.output.java_package_name_dir }}
+          java_package_name_dir: ${{ steps.replace-dots.output.java_package_name_dir }}
           owner: ${{ user.entity.metadata.name }}
           cluster: .apps.cluster-rw97m.sandbox266.opentlc.com
           host: ${{ parameters.repo.host }}
@@ -172,7 +172,7 @@ spec:
           port: 8080
           verify_commits: ${{ parameters.repo.verify_commits }}
           api_endpoint: ${{ parameters.api_endpoint }}
-          system: {{ context.user }}-${{ parameters.system }}
+          system: ${{ context.user }}-${{ parameters.system }}
 
     - id: publish
       name: Publish
