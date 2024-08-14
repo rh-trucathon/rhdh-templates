@@ -158,6 +158,12 @@ spec:
                 value: '${{ parameters.java_package_name }}'
       output:
         java_package_name_dir: '${{ steps.replace-dots.output }}'
+  
+    - id: debug00
+      name: debug printing
+      action: debug:log
+      input:
+        message: "${{ steps.replace-dots.output.java_package_name_dir }}"
 
     - id: debug01
       name: debug printing
