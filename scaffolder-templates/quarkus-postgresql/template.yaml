@@ -142,9 +142,11 @@ spec:
       name: Modify java_package_name
       action: regex:replace
       input:
-        source: '{{ parameters.java_package_name }}'
-        pattern: '\\.'
-        replacement: '/'
+        content: '{{ parameters.java_package_name }}'
+        regExps:
+          - pattern: '\\.'
+            replacement: '/'
+            global: true
       output:
         java_package_name_dir: '{{ steps.replace-dots.output }}'
 
