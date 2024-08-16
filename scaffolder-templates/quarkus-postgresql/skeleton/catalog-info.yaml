@@ -37,7 +37,7 @@ metadata:
 spec:
   type: service
   lifecycle: production
-  owner: ${{ values.owner }}-${{ values.component_id }}
+  owner: ${{ values.owner }}
   providesApis:
     - ${{ values.owner }}-${{ values.component_id }}
   system: ${{values.system}}
