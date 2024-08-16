@@ -26,7 +26,7 @@ spec:
           title: Name
           type: string
           description: Unique name of the component ("hero" is good starting point)
-#          default: my-quarkus-app
+          default: hero
           ui:field: EntityNamePicker
           maxLength: 23
         group_id:
@@ -37,16 +37,17 @@ spec:
         artifact_id:
           title: Artifact Id
           type: string
-#          default: quarkus-app
+          default: hero-service
           description: Maven Artifact Id
         java_package_name:
           title: Java Package Name
 #          default: org.redhat.janus
           type: string
           description: Name for the java package. eg (com.redhat.blah)
+          default: io.quarkus.workshop.hero
         api_endpoint:
           title: API Endpoint
-          default: /hello
+          default: /api/heroes
           type: string
           description: Path of the first API Endpoint
         # system:
@@ -58,7 +59,7 @@ spec:
           title: Description
           type: string
           description: Help others understand what this website is for.
-          default: A cool quarkus app
+          default: My super heroes service
     - title: Provide Image Registry Information
       required:
         - image_registry
