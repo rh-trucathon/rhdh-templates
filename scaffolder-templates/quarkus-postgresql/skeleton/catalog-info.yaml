@@ -12,7 +12,7 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: "${{ values.owner }}-${{ values.component_id | dump }}"
+  name: ${{ values.owner }}-${{ values.component_id }}
   {%- if values.description %}
   description: ${{values.description | dump}}
   {%- endif %}
@@ -37,15 +37,15 @@ metadata:
 spec:
   type: service
   lifecycle: production
-  owner: ${{values.owner | dump}}
+  owner: ${{ values.owner }}-${{ values.component_id }}
   providesApis:
-    - ${{values.component_id | dump}}
+    - ${{ values.owner }}-${{ values.component_id }}
   system: ${{values.system}}
 ---
 apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
-  name: ${{values.component_id | dump}}
+  name: ${{ values.owner }}-${{ values.component_id }}
   {%- if values.description %}
   description: ${{values.description | dump}}
   {%- endif %}
