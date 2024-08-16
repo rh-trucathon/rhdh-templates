@@ -143,27 +143,27 @@ spec:
     #   input:
     #     message: "Ce template a été exécuté par user.entity.metadata.name = ${{ user.entity.metadata.name }}."
 
-    - id: replace-dots
-      name: Modify java_package_name
-      action: regex:replace
-      input:
-        # content: '{{ parameters.java_package_name }}'
-        regExps:
-          - pattern: '\\.'
-            replacement: '/'
-            flags:
-              - g
-            values:
-              - key: java_package_name
-                value: '${{ parameters.java_package_name }}'
-      output:
-        java_package_name_dir: '${{ steps.replace-dots.output }}'
+    # - id: replace-dots
+    #   name: Modify java_package_name
+    #   action: regex:replace
+    #   input:
+    #     # content: '{{ parameters.java_package_name }}'
+    #     regExps:
+    #       - pattern: '\\.'
+    #         replacement: '/'
+    #         flags:
+    #           - g
+    #         values:
+    #           - key: java_package_name
+    #             value: '${{ parameters.java_package_name }}'
+    #   output:
+    #     java_package_name_dir: '${{ steps.replace-dots.output }}'
   
-    - id: debug00
-      name: debug printing
-      action: debug:log
-      input:
-        message: "${{ steps.replace-dots.output.java_package_name_dir }}"
+    # - id: debug00
+    #   name: debug printing
+    #   action: debug:log
+    #   input:
+    #     message: "${{ steps.replace-dots.output.java_package_name_dir }}"
 
     # - id: debug01
     #   name: debug printing
@@ -186,7 +186,8 @@ spec:
           artifact_id: ${{ parameters.artifact_id }}
           java_package_name: ${{ parameters.java_package_name }}
           # java_package_name_dir: ${{ steps.replace-dots.output.java_package_name_dir }}
-          java_package_name_dir: ${{ steps.replace-dots.values.java_package_name }}
+          # java_package_name_dir: ${{ steps.replace-dots.values.java_package_name }}
+          java_package_name_dir: ${{ java_package_name | replace(".","/") }}
           owner: ${{ user.entity.metadata.name }}
           cluster: .apps.cluster-rw97m.sandbox266.opentlc.com
           host: ${{ parameters.repo.host }}
