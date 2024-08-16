@@ -12,7 +12,7 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: ${{values.component_id | dump}}
+  name: ${{ user.entity.metadata.name }}-${{ values.component_id | dump }}
   {%- if values.description %}
   description: ${{values.description | dump}}
   {%- endif %}
