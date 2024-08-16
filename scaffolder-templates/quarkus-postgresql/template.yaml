@@ -156,21 +156,20 @@ spec:
             values:
               - key: java_package_name
                 value: '${{ parameters.java_package_name }}'
-      # output:
-      #   java_package_name_dir: '${{ steps.replace-dots.output }}'
+      output:
+        java_package_name_dir: '${{ steps.replace-dots.output }}'
   
     - id: debug00
       name: debug printing
       action: debug:log
       input:
-        # message: "${{ steps.replace-dots.output.java_package_name_dir }}"
-        message: ${{ steps['replace-dots'].output.java_package_name_dir }}
+        message: "${{ steps.replace-dots.output.java_package_name_dir }}"
 
-    - id: debug01
-      name: debug printing
-      action: debug:log
-      input:
-        message: "${{ steps.replace-dots.values.java_package_name }}"
+    # - id: debug01
+    #   name: debug printing
+    #   action: debug:log
+    #   input:
+    #     message: "${{ steps.replace-dots.values.java_package_name }}"
 
     - id: template
       name: Fetch Skeleton + Template
