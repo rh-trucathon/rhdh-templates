@@ -5,9 +5,9 @@ components:
   - name: development-tooling
     container:
 #      image: quay.io/devfile/universal-developer-image:ubi8-277c10c
-      image: registry.redhat.io/devspaces/udi-rhel8:latest
+      image: quay.io/devfile/universal-developer-image:ubi8-latest
       env:
-        - name: USE_JAVA17
+        - name: USE_JAVA21
           value: "true"
         - name: KUBEDOCK_ENABLED
           value: "true"
