@@ -248,16 +248,6 @@ spec:
         sourcePath: ./tenant-gitops
         repoVisibility: public
 
-    - id: create-argocd-resources
-      name: Create ArgoCD Resources
-      action: argocd:create-resources
-      input:
-        appName: ${{ parameters.component_id }}-bootstrap
-        argoInstance: main
-        namespace: janus-argocd
-        repoUrl: 'https://${{ parameters.repo.host }}/${{ user.entity.metadata.name }}/${{ parameters.component_id }}-gitops.git'
-        path: 'argocd/'
-
   output:
     links:
       - title: Source Code Repository
