@@ -15,7 +15,7 @@ spec:
     helm:
       parameters:
       - name: namespace.name
-        value: ${{ values.component_id }}-preprod
+        value: ${{values.user}}-workshop-preprod
       - name: environment
         value: preprod
       - name: image.tag

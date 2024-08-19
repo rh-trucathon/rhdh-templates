@@ -15,7 +15,7 @@ spec:
     helm:
       parameters:
       - name: namespace.name
-        value: ${{ values.component_id }}-prod
+        value: ${{values.user}}-workshop-prod
       - name: environment
         value: prod
       - name: image.tag
