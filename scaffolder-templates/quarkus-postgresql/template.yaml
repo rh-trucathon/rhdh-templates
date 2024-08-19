@@ -2,7 +2,7 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: quarkus-postgresql
-  title: quarkus-postgresql
+  title: quarkus-postgresql Gestrem
   description: Create a quarkus-rest-postgresql microservice
   tags:
     - recommended
