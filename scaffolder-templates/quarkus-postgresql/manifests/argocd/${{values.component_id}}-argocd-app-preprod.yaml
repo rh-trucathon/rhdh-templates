@@ -22,7 +22,7 @@ spec:
         value: preprod
   destination:
     server: https://kubernetes.default.svc
-    namespace: ${{values.user}}-${{ values.component_id }}-preprod
+    namespace: ${{values.user}}-workshop-preprod
   ignoreDifferences:
     - group: '*'
       jqPathExpressions:

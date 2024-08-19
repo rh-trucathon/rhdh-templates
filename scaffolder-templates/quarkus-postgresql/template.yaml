@@ -226,7 +226,8 @@ spec:
           repository_name: ${{parameters.component_id}}
           git_owner: '${{ user.entity.metadata.name }}'
           cluster: .apps.cluster-rw97m.sandbox266.opentlc.com
-          namespace: ${{ parameters.component_id }}-dev
+          # namespace: ${{ parameters.component_id }}-dev
+          namespace: ${{ user.entity.metadata.name }}-workshop-dev
           image_registry: ${{ parameters.image_registry }}
           image_host: ${{ parameters.image_host }}
           image_organization: ${{ parameters.image_organization }}
@@ -234,7 +235,7 @@ spec:
           image_tag: ${{ parameters.image_tag }}
           port: 8080
           repository_host: ${{ parameters.repo.host }}
-          deployment_name: quarkus-template
+          deployment_name: ${{ parameters.component_id }}
           user: ${{ user.entity.metadata.name }}
           verify_commits: ${{ parameters.repo.verify_commits }}
         targetPath: ./tenant-gitops
