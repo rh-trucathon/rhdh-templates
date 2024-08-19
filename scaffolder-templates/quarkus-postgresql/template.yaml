@@ -196,6 +196,7 @@ spec:
           verify_commits: ${{ parameters.repo.verify_commits }}
           api_endpoint: ${{ parameters.api_endpoint }}
           system: ${{ user.entity.metadata.name }}-workshop
+          user: ${{ user.entity.metadata.name }}
 
     - id: publish
       name: Publish
