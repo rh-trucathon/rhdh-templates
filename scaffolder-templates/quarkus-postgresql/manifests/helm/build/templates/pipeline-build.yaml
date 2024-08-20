@@ -88,6 +88,11 @@ spec:
       params:
       - name: MAVEN_IMAGE
         value: 'registry.redhat.io/ubi8/openjdk-21@sha256:64819651733c6e8cca1032a3d7ff93f9f557b01d7275d0b8bb430e780fc24df7'
+      - name: GOALS
+        value:
+          - -DskipTests
+          - clean
+          - package
       runAfter:
         - git-clone
 {{- end }}
