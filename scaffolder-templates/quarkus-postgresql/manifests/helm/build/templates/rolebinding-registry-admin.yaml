@@ -5,7 +5,8 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: registry-admin
-    namespace: {{ .Values.app.name }}-dev
+    # namespace: {{ .Values.app.name }}-dev
+    namespace: {{ .Values.user }}-workshop-dev
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
