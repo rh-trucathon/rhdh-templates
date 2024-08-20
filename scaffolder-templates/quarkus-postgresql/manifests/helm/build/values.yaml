@@ -1,6 +1,6 @@
 app:
-  # name: ${{values.component_id}}
-  name: ${{values.user}}-${{values.component_id}}
+  name: ${{values.component_id}}
+  # name: ${{values.user}}-${{values.component_id}}
   namespace: ${{values.user}}-workshop-dev
   cluster: ${{ values.cluster }}
 
