@@ -6,7 +6,7 @@ subjects:
   - kind: ServiceAccount
     name: image-pusher
     # namespace: ${{values.component_id}}-dev
-    namespace: {{ .Values.namespace }}
+    namespace: {{ .Values.app.namespace }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
