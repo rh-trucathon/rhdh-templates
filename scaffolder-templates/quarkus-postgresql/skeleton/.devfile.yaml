@@ -51,14 +51,6 @@ components:
     volume:
       size: 1G
 commands:
-  - id: enabledevui
-    exec:
-      label: "0. Enable Quarkus Dev UI"
-      component: development-tooling
-      commandLine: "export DEVUI_URL=$(oc get dw -o=jsonpath='{.items[?(@.status.phase=="Running")].metadata.name}');sed -i 's/<SOMETHING>/'"$DEVUI_URL"'/g' /projects/hero4/src/main/resources/application.properties;"
-      group:
-        kind: build
-        isDefault: true
   - id: package
     exec:
       label: "1. Package the application"
