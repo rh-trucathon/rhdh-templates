@@ -6,7 +6,7 @@ subjects:
   - kind: ServiceAccount
     name: job-runner
     # namespace: {{ .Values.app.name }}-dev
-    namespace: {{ .Values.user }}-workshop-dev
+    namespace: {{ .Values.namespace }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
