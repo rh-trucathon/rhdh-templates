@@ -5,6 +5,8 @@ metadata:
   labels:
     {{- include "backstage.labels" . | nindent 4 }}
     {{- include "quarkus-template.labels" . | nindent 4 }}
+  annotations:
+    app.openshift.io/connects-to: '[{"apiVersion":"apps/v1","kind":"Deployment","name":"${{values.deployment_name}}-database"}]'
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
@@ -41,6 +43,28 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          env:
+            - name: KUBERNETES_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POSTGRESQL_USERNAME
+              valueFrom:
+                 secretKeyRef:
+                    name: ${{values.deployment_name}}-database-config
+                    key: POSTGRES_USERNAME
+            - name: POSTGRESQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: ${{values.deployment_name}}-database-config
+                  key: POSTGRES_PASSWORD
+            - name: POSTGRESQL_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: ${{values.deployment_name}}-database-config
+                  key: POSTGRES_DATABASE
+            - name: QUARKUS_DATASOURCE_JDBC_URL
+              value: jdbc:postgresql://${{values.deployment_name}}-database:5432/${{values.deployment_name}}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
