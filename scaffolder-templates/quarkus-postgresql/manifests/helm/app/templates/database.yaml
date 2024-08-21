@@ -35,10 +35,12 @@ metadata:
   labels:
     app: ${{values.deployment_name}}-database
   name: ${{values.deployment_name}}-database-config
+stringData:
+  POSTGRES_DATABASE: ${{values.deployment_name}}
 data:
-  POSTGRESQL_DATABASE: aGVybw==
-  POSTGRESQL_USERNAME: aGVybw==
-  POSTGRESQL_PASSWORD: aGVybw==
+  POSTGRES_USERNAME: aGVybw==
+  POSTGRES_PASSWORD: aGVybw==
+  PGDATA: L3RtcC9kYXRh
 type: Opaque
 ---
 apiVersion: v1
