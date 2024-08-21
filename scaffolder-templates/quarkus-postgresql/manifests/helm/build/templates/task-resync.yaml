@@ -10,8 +10,7 @@ spec:
   steps:
     - args:
         - >-
-          oc delete pod -n $(params.COMPONENT_ID)-dev -l
-          app.kubernetes.io/instance=$(params.COMPONENT_ID)-dev
+          oc delete pod -n {{ .Values.app.namespace }} -l app.kubernetes.io/instance={{ .Values.app.name }}-dev
       command:
         - /bin/bash
         - '-c'
