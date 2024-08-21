@@ -48,6 +48,8 @@ spec:
             value: {{ .Values.git.org }}
           - name: component-id
             value: {{ .Values.app.name }}
+          - name: git-name
+            value: {{ .Values.git.name }}
           - name: common-password-secret
             value: common-password-secret
           - name: rekor-url

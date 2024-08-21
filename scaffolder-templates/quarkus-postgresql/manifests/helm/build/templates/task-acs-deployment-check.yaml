@@ -36,6 +36,10 @@ spec:
       description: The name of the component
       name: component_id
       type: string
+    - default: my-quarkus-app
+      description: Git repository name
+      name: git-name
+      type: string
     - default: common-password-secret
       name: common_password_secret
       type: string
@@ -71,10 +75,10 @@ spec:
 
         if [[ "$(params.verbose)" == "true" ]] ; then
           set -x
-          echo "**** Cloning https://root:$COMMON_PASSWORD@$(params.git_host)/$(params.git_owner)/$(params.component_id)-gitops into $(pwd)/repository"
+          echo "**** Cloning https://root:$COMMON_PASSWORD@$(params.git_host)/$(params.git_owner)/$(params.git-name)-gitops into $(pwd)/repository"
         fi
 
-        git clone "https://root:$COMMON_PASSWORD@$(params.git_host)/$(params.git_owner)/$(params.component_id)-gitops" $(pwd)/repository
+        git clone "https://root:$COMMON_PASSWORD@$(params.git_host)/$(params.git_owner)/$(params.git-name)-gitops" $(pwd)/repository
         cd repository
         git checkout "$(params.git_repository_revision)"
       volumeMounts:

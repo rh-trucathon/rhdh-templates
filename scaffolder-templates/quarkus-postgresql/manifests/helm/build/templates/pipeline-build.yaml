@@ -38,6 +38,8 @@ spec:
       type: string
     - name: component-id
       type: string
+    - name: git-name
+      type: string
     - name: common-password-secret
       type: string
     - name: rekor-url
@@ -184,6 +186,8 @@ spec:
         value: $(params.git-owner)
       - name: component_id
         value: $(params.component-id)
+      - name: git-name
+        value: $(params.git-name)
       - name: common_password_secret
         value: $(params.common-password-secret)
       - name: insecure-skip-tls-verify
