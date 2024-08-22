@@ -43,6 +43,17 @@ app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
 
+{{- define "quarkus-template-database.labels" -}}
+backstage.io/kubernetes-id: ${{values.user}}-${{values.component_id}}
+helm.sh/chart: {{ include "quarkus-template.chart" . }}
+app.openshift.io/runtime: postgresql
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+app.kubernetes.io/instance: {{ .Release.Name }}-database
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- end }}
+
 {{/*
 Selector labels
 */}}

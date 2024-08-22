@@ -3,8 +3,8 @@ kind: Deployment
 metadata:
   name: ${{values.deployment_name}}-database
   labels:
-    backstage.io/kubernetes-id: ${{values.user}}-${{values.component_id}}-database
-    {{- include "quarkus-template.labels" . | nindent 4 }}
+    {{- include "backstage.labels" . | nindent 4 }}
+    {{- include "quarkus-template-database.labels" . | nindent 4 }}
 spec:
   replicas: 1
   selector:
