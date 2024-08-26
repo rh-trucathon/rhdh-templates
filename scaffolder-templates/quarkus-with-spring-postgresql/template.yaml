@@ -18,6 +18,9 @@ spec:
     - title: Provide information about the OpenShift cluster
       required:
         - openshiftCluster
+        - image_host
+        - image_organization
+        - image_tag
       properties:
         openshiftCluster:
           title: OpenShift Clusters
@@ -25,7 +28,6 @@ spec:
           enum:
             - apps.cluster-rw97m.sandbox266.opentlc.com
             - apps.cluster-XXXXX.sandboxYYY.opentlc.com
-      
       dependencies:
         openshiftCluster:
           oneOf:
@@ -37,7 +39,8 @@ spec:
                   title: Image Host
                   type: string
                   description: Host for storing image
-                  default: quay-rw97m.apps.cluster-rw97m.sandbox266.opentlc.com
+                  enum: 
+                    - quay-rw97m.apps.cluster-rw97m.sandbox266.opentlc.com
                 image_organization:
                   title: Organization
                   type: string
@@ -48,7 +51,6 @@ spec:
                   default: latest
                   type: string
                   description: Build Image tag
-
             - properties:
                 openshiftCluster:
                   enum:
@@ -57,7 +59,8 @@ spec:
                   title: Image Host
                   type: string
                   description: Host for storing image
-                  default: quay-AZER.apps.cluster-XXXXX.sandbox266.opentlc.com
+                  enum: 
+                    - quay-AZER.apps.cluster-XXXXX.sandbox266.opentlc.com
                 image_organization:
                   title: Organization
                   type: string
