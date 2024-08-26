@@ -9,6 +9,8 @@ metadata:
     - java
     - quarkus
     - maven
+    - trucathon
+    - opencodequest
 spec:
   owner: rhdh
   type: service
