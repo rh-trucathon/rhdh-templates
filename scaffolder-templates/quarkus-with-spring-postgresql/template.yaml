@@ -23,8 +23,8 @@ spec:
           title: OpenShift Clusters
           type: string
           enum:
-            - cluster-rw97m.sandbox266.opentlc.com
-            - cluster-XXXXX.sandboxYYY.opentlc.com
+            - apps.cluster-rw97m.sandbox266.opentlc.com
+            - apps.cluster-XXXXX.sandboxYYY.opentlc.com
     - title: Provide Information for Application
       required:
         - component_id
@@ -123,9 +123,9 @@ spec:
               title: Repo Host
               type: string
               description: Your SCM host
-              default: gitlab-gitlab.apps.cluster-rw97m.sandbox266.opentlc.com
+              default: gitlab-gitlab
               enum:
-                - gitlab-gitlab.apps.cluster-rw97m.sandbox266.opentlc.com
+                - gitlab-gitlab
             verify_commits:
               title: Verify Commits
               type: string
@@ -153,8 +153,8 @@ spec:
           java_package_name: ${{ parameters.java_package_name }}
           java_package_name_dir: ${{ parameters.java_package_name | replace(".","/") }}
           owner: ${{ user.entity.metadata.name }}
-          cluster: .apps.${{ parameters.openshiftCluster }}
-          host: ${{ parameters.repo.host }}
+          cluster: .${{ parameters.openshiftCluster }}
+          host: ${{ parameters.repo.host }}.${{ parameters.openshiftCluster }}
           destination: '${{ user.entity.metadata.name }}/${{ parameters.component_id }}'
           quay_destination: ${{ parameters.image_organization}}/${{ parameters.component_id }}
           port: 8080
@@ -167,7 +167,7 @@ spec:
       name: Publish
       action: publish:gitlab
       input:
-        repoUrl: "${{ parameters.repo.host }}?owner=${{ user.entity.metadata.name }}&repo=${{parameters.component_id}}"
+        repoUrl: "${{ parameters.repo.host }}.${{ parameters.openshiftCluster }}?owner=${{ user.entity.metadata.name }}&repo=${{parameters.component_id}}"
         repoVisibility: public
 
     - id: register
@@ -186,8 +186,8 @@ spec:
         values:
           component_id: ${{ parameters.component_id }}
           description: ${{ parameters.description }}
-          destination: https://${{ parameters.repo.host }}/${{ user.entity.metadata.name }}/${{parameters.component_id}}-gitops.git
-          source_repository: https://${{ parameters.repo.host }}/${{ user.entity.metadata.name }}/${{parameters.component_id}}.git
+          destination: https://${{ parameters.repo.host }}.${{ parameters.openshiftCluster }}/${{ user.entity.metadata.name }}/${{parameters.component_id}}-gitops.git
+          source_repository: https://${{ parameters.repo.host }}.${{ parameters.openshiftCluster }}/${{ user.entity.metadata.name }}/${{parameters.component_id}}.git
           repository_name: ${{parameters.component_id}}
           git_owner: '${{ user.entity.metadata.name }}'
           cluster: .apps.${{ parameters.openshiftCluster }}
@@ -199,7 +199,7 @@ spec:
           image_name: ${{ parameters.component_id }}
           image_tag: ${{ parameters.image_tag }}
           port: 8080
-          repository_host: ${{ parameters.repo.host }}
+          repository_host: ${{ parameters.repo.host }}.${{ parameters.openshiftCluster }}
           deployment_name: ${{ parameters.component_id }}
           user: ${{ user.entity.metadata.name }}
           verify_commits: ${{ parameters.repo.verify_commits }}
@@ -209,7 +209,7 @@ spec:
       name: Publishing to Resource Repository
       action: publish:gitlab
       input:
-        repoUrl: "${{ parameters.repo.host }}?owner=${{ user.entity.metadata.name }}&repo=${{parameters.component_id}}-gitops"
+        repoUrl: "${{ parameters.repo.host }}.${{ parameters.openshiftCluster }}?owner=${{ user.entity.metadata.name }}&repo=${{parameters.component_id}}-gitops"
         title: gitops resources for ${{ parameters.component_id }}
         description: gitops resources for ${{ parameters.component_id }}
         sourcePath: ./tenant-gitops
@@ -222,7 +222,7 @@ spec:
         appName: ${{ user.entity.metadata.name }}-${{ parameters.component_id }}-bootstrap
         argoInstance: main
         namespace: janus-argocd
-        repoUrl: 'https://${{ parameters.repo.host }}/${{ user.entity.metadata.name }}/${{ parameters.component_id }}-gitops.git'
+        repoUrl: 'https://${{ parameters.repo.host }}.${{ parameters.openshiftCluster }}/${{ user.entity.metadata.name }}/${{ parameters.component_id }}-gitops.git'
         path: 'argocd/'
 
   output:
