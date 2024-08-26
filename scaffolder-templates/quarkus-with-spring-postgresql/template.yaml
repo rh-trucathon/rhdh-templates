@@ -41,6 +41,7 @@ spec:
                   description: Host for storing image
                   enum: 
                     - quay-rw97m.apps.cluster-rw97m.sandbox266.opentlc.com
+                  default: quay-rw97m.apps.cluster-rw97m.sandbox266.opentlc.com
                 image_organization:
                   title: Organization
                   type: string
@@ -61,6 +62,7 @@ spec:
                   description: Host for storing image
                   enum: 
                     - quay-AZER.apps.cluster-XXXXX.sandbox266.opentlc.com
+                  default: quay-AZER.apps.cluster-XXXXX.sandbox266.opentlc.com
                 image_organization:
                   title: Organization
                   type: string
