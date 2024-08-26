@@ -15,6 +15,16 @@ spec:
   owner: rhdh
   type: service
   parameters:
+    - title: Provide information about the OpenShift cluster
+      required:
+        - openshiftCluster
+      properties:
+        openshiftCluster:
+          title: OpenShift Clusters
+          type: string
+          enum:
+            - cluster-rw97m.sandbox266.opentlc.com
+            - cluster-XXXXX.sandboxYYY.opentlc.com
     - title: Provide Information for Application
       required:
         - component_id
@@ -126,6 +136,7 @@ spec:
                 - disabled
 
   steps:
+
     - id: template
       name: Fetch Skeleton + Template
       action: fetch:template
@@ -142,7 +153,7 @@ spec:
           java_package_name: ${{ parameters.java_package_name }}
           java_package_name_dir: ${{ parameters.java_package_name | replace(".","/") }}
           owner: ${{ user.entity.metadata.name }}
-          cluster: .apps.cluster-rw97m.sandbox266.opentlc.com
+          cluster: .apps.${{ parameters.openshiftCluster }}
           host: ${{ parameters.repo.host }}
           destination: '${{ user.entity.metadata.name }}/${{ parameters.component_id }}'
           quay_destination: ${{ parameters.image_organization}}/${{ parameters.component_id }}
@@ -179,7 +190,7 @@ spec:
           source_repository: https://${{ parameters.repo.host }}/${{ user.entity.metadata.name }}/${{parameters.component_id}}.git
           repository_name: ${{parameters.component_id}}
           git_owner: '${{ user.entity.metadata.name }}'
-          cluster: .apps.cluster-rw97m.sandbox266.opentlc.com
+          cluster: .apps.${{ parameters.openshiftCluster }}
           # namespace: ${{ parameters.component_id }}-dev
           namespace: ${{ user.entity.metadata.name }}-workshop-dev
           image_registry: ${{ parameters.image_registry }}

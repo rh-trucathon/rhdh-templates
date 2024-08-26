@@ -15,12 +15,21 @@ spec:
   owner: rhdh
   type: service
   parameters:
+    - title: Provide information about the OpenShift cluster
+      required:
+        - openshiftCluster
+      properties:
+        openshiftCluster:
+          title: OpenShift Clusters
+          type: string
+          enum:
+            - cluster-rw97m.sandbox266.opentlc.com
+            - cluster-XXXXX.sandboxYYY.opentlc.com
     - title: Provide Information for Application
       required:
         - component_id
         - java_package_name
         - api_endpoint
-        # - system
         - group_id
         - artifact_id
       properties:
@@ -43,7 +52,6 @@ spec:
           description: Maven Artifact Id
         java_package_name:
           title: Java Package Name
-#          default: org.redhat.janus
           type: string
           description: Name for the java package. eg (com.redhat.blah)
           default: io.quarkus.workshop.hero
@@ -52,11 +60,6 @@ spec:
           default: /api/heroes
           type: string
           description: Path of the first API Endpoint
-        # system:
-        #   title: System Application
-        #   type: string
-        #   description: Name of the "System" application (which contains all the services)
-        #   default: youruser_workshop
         description:
           title: Description
           type: string
@@ -123,13 +126,6 @@ spec:
               default: gitlab-gitlab.apps.cluster-rw97m.sandbox266.opentlc.com
               enum:
                 - gitlab-gitlab.apps.cluster-rw97m.sandbox266.opentlc.com
-            # owner:
-            #   title: Repo Owner
-            #   type: string
-            #   description: Your SCM host organization/group
-            #   default: development
-            #   enum:
-            #     - development
             verify_commits:
               title: Verify Commits
               type: string
@@ -140,39 +136,6 @@ spec:
                 - disabled
 
   steps:
-    # - id: log-username
-    #   name: Afficher le nom d'utilisateur
-    #   action: debug:log
-    #   input:
-    #     message: "Ce template a été exécuté par user.entity.metadata.name = ${{ user.entity.metadata.name }}."
-
-    # - id: replace-dots
-    #   name: Modify java_package_name
-    #   action: regex:replace
-    #   input:
-    #     # content: '{{ parameters.java_package_name }}'
-    #     regExps:
-    #       - pattern: '\\.'
-    #         replacement: '/'
-    #         flags:
-    #           - g
-    #         values:
-    #           - key: java_package_name
-    #             value: '${{ parameters.java_package_name }}'
-    #   output:
-    #     java_package_name_dir: '${{ steps.replace-dots.output }}'
-  
-    # - id: debug00
-    #   name: debug printing
-    #   action: debug:log
-    #   input:
-    #     message: "${{ steps.replace-dots.output.java_package_name_dir }}"
-
-    # - id: debug01
-    #   name: debug printing
-    #   action: debug:log
-    #   input:
-    #     message: "${{ steps.replace-dots.values.java_package_name }}"
 
     - id: template
       name: Fetch Skeleton + Template
@@ -190,7 +153,7 @@ spec:
           java_package_name: ${{ parameters.java_package_name }}
           java_package_name_dir: ${{ parameters.java_package_name | replace(".","/") }}
           owner: ${{ user.entity.metadata.name }}
-          cluster: .apps.cluster-rw97m.sandbox266.opentlc.com
+          cluster: .apps.${{ parameters.openshiftCluster }}
           host: ${{ parameters.repo.host }}
           destination: '${{ user.entity.metadata.name }}/${{ parameters.component_id }}'
           quay_destination: ${{ parameters.image_organization}}/${{ parameters.component_id }}
@@ -227,7 +190,7 @@ spec:
           source_repository: https://${{ parameters.repo.host }}/${{ user.entity.metadata.name }}/${{parameters.component_id}}.git
           repository_name: ${{parameters.component_id}}
           git_owner: '${{ user.entity.metadata.name }}'
-          cluster: .apps.cluster-rw97m.sandbox266.opentlc.com
+          cluster: .apps.${{ parameters.openshiftCluster }}
           # namespace: ${{ parameters.component_id }}-dev
           namespace: ${{ user.entity.metadata.name }}-workshop-dev
           image_registry: ${{ parameters.image_registry }}
