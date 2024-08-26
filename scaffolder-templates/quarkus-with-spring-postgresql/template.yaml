@@ -190,7 +190,7 @@ spec:
           source_repository: https://${{ parameters.repo.host }}.${{ parameters.openshiftCluster }}/${{ user.entity.metadata.name }}/${{parameters.component_id}}.git
           repository_name: ${{parameters.component_id}}
           git_owner: '${{ user.entity.metadata.name }}'
-          cluster: ${{ parameters.openshiftCluster }}
+          cluster: .${{ parameters.openshiftCluster }}
           # namespace: ${{ parameters.component_id }}-dev
           namespace: ${{ user.entity.metadata.name }}-workshop-dev
           image_registry: ${{ parameters.image_registry }}
