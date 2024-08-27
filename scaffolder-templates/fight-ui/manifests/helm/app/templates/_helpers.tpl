@@ -33,7 +33,12 @@ Create chart name and version as used by the chart label.
 {{/*
 Common labels
 */}}
+{{- define "backstage.labels" -}}
+backstage.io/kubernetes-id: ${{values.user}}-${{values.component_id}}
+{{- end }}
+
 {{- define "fight-ui.labels" -}}
+backstage.io/kubernetes-id: ${{values.user}}-${{values.component_id}}
 helm.sh/chart: {{ include "fight-ui.chart" . }}
 {{ include "fight-ui.selectorLabels" . }}
 {{- if .Chart.AppVersion }}

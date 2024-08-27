@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: {{ include "fight-ui.fullname" . }}
   labels:
+    {{- include "backstage.labels" . | nindent 4 }}
     {{- include "fight-ui.labels" . | nindent 4 }}
     app.openshift.io/runtime: nodejs
   annotations:
