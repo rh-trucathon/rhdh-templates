@@ -70,7 +70,7 @@ spec:
         url: ./skeleton
         targetPath: ./source
         values:
-          git_host: gitlab-gitlab.apps.${{parameters.openshiftCluster}}
+          git_host: gitlab-gitlab.${{parameters.openshiftCluster}}
           gitlabGroup: ${{ user.entity.metadata.name }}
           repoName: fight-ui
           owner: ${{user.entity.metadata.name}}
@@ -84,7 +84,7 @@ spec:
       input:
         sourcePath: ./source
         description: "fight-ui sources"
-        repoUrl: gitlab-gitlab.apps.${{parameters.openshiftCluster}}?owner=${{ user.entity.metadata.name }}&repo=fight-ui
+        repoUrl: gitlab-gitlab.${{parameters.openshiftCluster}}?owner=${{ user.entity.metadata.name }}&repo=fight-ui
         defaultBranch: main
         protectDefaultBranch: false
         repoVisibility: public
@@ -121,7 +121,7 @@ spec:
       name: Publishing to Deployment Resource Repository
       action: publish:gitlab
       input:
-        repoUrl: gitlab-gitlab.apps.${{parameters.openshiftCluster}}?owner=${{ user.entity.metadata.name }}&repo=fight-ui-gitops
+        repoUrl: gitlab-gitlab.${{parameters.openshiftCluster}}?owner=${{ user.entity.metadata.name }}&repo=fight-ui-gitops
         title: gitops resources for ${{ user.entity.metadata.name }}-fight-ui
         description: gitops resources for ${{ user.entity.metadata.name }}-fight-ui
         sourcePath: ./tenant-gitops
@@ -136,7 +136,7 @@ spec:
         appName: ${{ user.entity.metadata.name }}-fight-ui-bootstrap
         argoInstance: main
         namespace: janus-argocd
-        repoUrl: https://gitlab-gitlab.apps.${{parameters.openshiftCluster}}/${{parameters.gitlabGroup}}/fight-ui-gitops.git
+        repoUrl: https://gitlab-gitlab.${{parameters.openshiftCluster}}/${{parameters.gitlabGroup}}/fight-ui-gitops.git
         path: 'argocd/'
 
   output:
