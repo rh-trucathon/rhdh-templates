@@ -11,7 +11,7 @@ replicaCount: 1
 
 image:
   pullPolicy: Always
-  registry: ${{values.image_registry}}
+  registry: Quay
   host: ${{values.image_host}}
   organization: ${{values.image_organization}}
   name: ${{values.image_name}}
