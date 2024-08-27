@@ -119,6 +119,7 @@ spec:
           image_host: ghcr.io
           image_name: /cescoffier/quarkus-openshift-workshop-fight-ui
           image_tag: main
+          user: ${{ user.entity.metadata.name }}
         targetPath: ./tenant-gitops
   
     - id: publishGitops
