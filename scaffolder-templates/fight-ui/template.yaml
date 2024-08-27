@@ -78,6 +78,9 @@ spec:
           namespace: ${{ user.entity.metadata.name }}-workshop-dev
           component_id: fight-ui
           system: ${{ user.entity.metadata.name }}-workshop
+          user: ${{ user.entity.metadata.name }}
+          host: ${{ parameters.repo.host }}.${{ parameters.openshiftCluster }}
+          destination: '${{ user.entity.metadata.name }}/${{ parameters.component_id }}'
 
     - id: publishSource
       name: Publishing to Source Code Repository
