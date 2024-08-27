@@ -16,7 +16,7 @@ git:
 
 
 image:
-  registry: ${{values.image_registry}}
+  registry: Quay
   organization: ${{values.image_organization}}
   host: ${{ values.image_host }}
   name: ${{ values.image_name }}
