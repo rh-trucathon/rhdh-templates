@@ -77,6 +77,7 @@ spec:
           cluster_id: .${{parameters.openshiftCluster}}
           namespace: ${{ user.entity.metadata.name }}-workshop-dev
           component_id: fight-ui
+          system: ${{ user.entity.metadata.name }}-workshop
 
     - id: publishSource
       name: Publishing to Source Code Repository
