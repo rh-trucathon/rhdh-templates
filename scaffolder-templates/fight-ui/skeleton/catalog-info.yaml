@@ -1,0 +1,54 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: ${{values.system}}
+  tags:
+    - nodejs
+    - superheroes
+spec:
+  owner: ${{values.owner | dump}}
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ${{ values.owner }}-${{ values.component_id }}
+  {%- if values.description %}
+  description: ${{values.description | dump}}
+  {%- endif %}
+  annotations:
+    argocd/app-selector: rht-gitops.com/janus-argocd=${{values.user}}-${{values.component_id}}-bootstrap
+    backstage.io/kubernetes-id: ${{values.user}}-${{values.component_id}}
+    backstage.io/source-location: url:https://${{values.host}}/${{values.destination}}
+    backstage.io/techdocs-ref: url:https://${{values.host}}/${{values.destination}}
+    gitlab.com/project-slug: ${{values.destination}}
+  tags:
+    - nodejs
+  # links:
+    # - url: https://devspaces${{values.cluster}}/#https://${{values.host}}/${{values.destination}}
+    #   title: OpenShift Dev Spaces (VS Code)
+    #   icon: web
+    # - url: https://devspaces${{values.cluster}}/#https://${{values.host}}/${{values.destination}}?che-editor=che-incubator/che-idea/latest
+    #   title: OpenShift Dev Spaces (JetBrains IntelliJ)
+    #   icon: web
+spec:
+  type: service
+  lifecycle: production
+  owner: ${{ values.owner }}
+  providesApis:
+    - ${{ values.owner }}-${{ values.component_id }}
+  system: ${{values.system}}
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: ${{ values.owner }}-${{ values.component_id }}
+  {%- if values.description %}
+  description: ${{values.description | dump}}
+  {%- endif %}
+spec:
+  type: openapi
+  lifecycle: production
+  owner: ${{values.owner | dump}}
+  definition:
+    $text: ./openapi.yaml
+
