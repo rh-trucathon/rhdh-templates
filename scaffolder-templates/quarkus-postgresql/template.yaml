@@ -85,8 +85,8 @@ spec:
         component_id:
           title: Name
           type: string
-          description: Unique name of the component ("hero" is good starting point)
-          default: hero
+          description: Unique name of the component ("Hero" is good starting point)
+          default: Hero
           ui:field: EntityNamePicker
           maxLength: 23
         group_id:
