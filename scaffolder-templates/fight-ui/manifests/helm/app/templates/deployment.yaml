@@ -41,6 +41,12 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
+            # - name: QUARKUS_ENDPOINTS_HEROES
+            #   value: TOBECONFIGURED
+            # - name: QUARKUS_ENDPOINTS_VILLAINS
+            #   value: TOBECONFIGURED
+            # - name: QUARKUS_ENDPOINTS_FIGHT
+            #   value: TOBECONFIGURED
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
