@@ -1,7 +1,11 @@
+{{- if not (eq .Values.environment "prod") -}}
 apiVersion: postgresql.k8s.enterprisedb.io/v1
 kind: Cluster
 metadata:
   name: ${{values.deployment_name}}-database
+  labels:
+    {{- include "backstage.labels" . | nindent 4 }}
+    {{- include "quarkus-template-database.labels" . | nindent 4 }}
 spec:
   instances: 1
   imageName: quay.io/enterprisedb/postgresql:14.2
@@ -18,3 +22,4 @@ spec:
     limits:
       memory: "128Mi"
       cpu: "400m"
+{{- end }}
