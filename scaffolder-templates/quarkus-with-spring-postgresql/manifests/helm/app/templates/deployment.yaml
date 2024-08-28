@@ -50,21 +50,26 @@ spec:
                   fieldPath: metadata.namespace
             - name: POSTGRESQL_USERNAME
               valueFrom:
-                 secretKeyRef:
-                    name: ${{values.deployment_name}}-database-config
-                    key: POSTGRES_USERNAME
+                secretKeyRef:
+                  name: ${{values.deployment_name}}-edb-app
+                  key: username
             - name: POSTGRESQL_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: ${{values.deployment_name}}-database-config
-                  key: POSTGRES_PASSWORD
+                  name: ${{values.deployment_name}}-edb-app
+                  key: password
             - name: POSTGRESQL_DATABASE
               valueFrom:
                 secretKeyRef:
-                  name: ${{values.deployment_name}}-database-config
-                  key: POSTGRES_DATABASE
+                  name: ${{values.deployment_name}}-edb-app
+                  key: dbname
             - name: QUARKUS_DATASOURCE_JDBC_URL
-              value: jdbc:postgresql://${{values.deployment_name}}-database:5432/${{values.deployment_name}}
+#              value: jdbc:postgresql://${{values.deployment_name}}-database:5432/${{values.deployment_name}}
+              valueFrom:
+                secretKeyRef:
+                  name: ${{values.deployment_name}}-edb-app
+                  key: jdbc-uri
+
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
