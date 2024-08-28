@@ -51,23 +51,22 @@ spec:
             - name: POSTGRESQL_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: ${{values.deployment_name}}-edb-app
+                  name: ${{values.deployment_name}}-database-app
                   key: username
             - name: POSTGRESQL_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: ${{values.deployment_name}}-edb-app
+                  name: ${{values.deployment_name}}-database-app
                   key: password
             - name: POSTGRESQL_DATABASE
               valueFrom:
                 secretKeyRef:
-                  name: ${{values.deployment_name}}-edb-app
+                  name: ${{values.deployment_name}}-database-app
                   key: dbname
             - name: QUARKUS_DATASOURCE_JDBC_URL
-#              value: jdbc:postgresql://${{values.deployment_name}}-database:5432/${{values.deployment_name}}
               valueFrom:
                 secretKeyRef:
-                  name: ${{values.deployment_name}}-edb-app
+                  name: ${{values.deployment_name}}-database-app
                   key: jdbc-uri
 
       {{- with .Values.nodeSelector }}
