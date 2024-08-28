@@ -68,7 +68,8 @@ spec:
                 secretKeyRef:
                   name: ${{values.deployment_name}}-database-app
                   key: jdbc-uri
-
+            - name: QUARKUS_HIBERNATE_ORM_DATABASE_GENERATION
+              value: "update"
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
