@@ -17,7 +17,7 @@ spec:
       description: Email of user who committed the change
   resourcetemplates:
     - apiVersion: tekton.dev/v1beta1
-      kind: {{ .Values.app.name }}-pipelineRun
+      kind: PipelineRun
       metadata:
         generateName: {{ .Values.app.name }}-run-build-
         labels:
@@ -50,7 +50,7 @@ spec:
             value: {{ .Values.app.name }}
           - name: git-name
             value: {{ .Values.git.name }}
-          - name: {{ .Values.app.name }}-common-password-secret
+          - name: common-password-secret
             value: {{ .Values.app.name }}-common-password-secret
           - name: rekor-url
             value: http://rekor-server.trusted-artifact-signer.svc

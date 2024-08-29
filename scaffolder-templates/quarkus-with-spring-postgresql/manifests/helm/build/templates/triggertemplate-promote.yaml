@@ -19,7 +19,7 @@ spec:
       description: The target namespace being deployed to
   resourcetemplates:
     - apiVersion: tekton.dev/v1beta1
-      kind: {{ .Values.app.name }}-pipelineRun
+      kind: PipelineRun
       metadata:
         generateName: {{ .Values.app.name }}-run-promote-
         labels:
@@ -47,7 +47,7 @@ spec:
             value: {{ .Values.git.org }}
           - name: component-id
             value: {{ .Values.app.name }}
-          - name: {{ .Values.app.name }}-common-password-secret
+          - name: common-password-secret
             value: {{ .Values.app.name }}-common-password-secret
           - name: argocd-host
             value: argocd-server-janus-argocd{{ .Values.app.cluster }}

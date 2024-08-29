@@ -1,10 +1,10 @@
 ---
 apiVersion: tekton.dev/v1beta1
-kind: {{ .Values.app.name }}-pipeline
+kind: Pipeline
 metadata:
   name: {{ .Values.app.name }}-promote
   labels:
-    type: {{ .Values.app.name }}-pipeline
+    type: pipeline
     backstage.io/kubernetes-id: {{ .Values.app.name }}
 spec:
   params:
@@ -34,7 +34,7 @@ spec:
       name: component-id
       type: string
     - description: Common password used in demo
-      name: {{ .Values.app.name }}-common-password-secret
+      name: common-password-secret
       type: string
     - description: ArgoCD host
       name: argocd-host
