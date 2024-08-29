@@ -235,7 +235,7 @@ spec:
         value: $(params.component-id)
       runAfter:
       - {{ .Values.app.name }}-scan-export-sbom
-      - {{ .Values.app.name }}-query-rekor-signed-provenance
+      - query-rekor-signed-provenance
       taskRef:
         kind: Task
         name: {{ .Values.app.name }}-resync
