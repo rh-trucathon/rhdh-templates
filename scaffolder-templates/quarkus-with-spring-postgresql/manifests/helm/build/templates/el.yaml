@@ -4,7 +4,7 @@ kind: EventListener
 metadata:
   name: {{ .Values.app.name }}-el
 spec:
-  serviceAccountName: {{ .Values.app.name }}-pipeline
+  serviceAccountName: pipeline
   triggers:
     - bindings:
         - kind: TriggerBinding
