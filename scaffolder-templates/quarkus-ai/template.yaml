@@ -11,7 +11,8 @@ metadata:
     - maven
     - trucathon
     - opencodequest
-    - AI
+    - ai
+    - intelligent
 spec:
   owner: rhdh
   type: service
