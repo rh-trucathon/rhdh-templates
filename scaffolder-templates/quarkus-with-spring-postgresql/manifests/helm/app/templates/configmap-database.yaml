@@ -4,5 +4,5 @@ metadata:
   name: ${{values.deployment_name}}-importsql
 immutable: false
 data:
-  import.sql: 
+  import.sql: |-
 
