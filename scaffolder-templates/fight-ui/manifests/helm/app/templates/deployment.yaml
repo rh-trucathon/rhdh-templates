@@ -7,7 +7,7 @@ metadata:
     {{- include "fight-ui.labels" . | nindent 4 }}
     app.openshift.io/runtime: nodejs
   annotations:
-    app.openshift.io/connects-to: '[{"apiVersion":"apps/v1","kind":"Deployment","name":"hero"},{"apiVersion":"apps/v1","kind":"Deployment","name":"villain"}]'
+    app.openshift.io/connects-to: '[{"apiVersion":"apps/v1","kind":"Deployment","name":"hero"},{"apiVersion":"apps/v1","kind":"Deployment","name":"villain"},{"apiVersion":"apps/v1","kind":"Deployment","name":"fight"}]'
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
