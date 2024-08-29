@@ -87,8 +87,8 @@ spec:
         component_id:
           title: Name
           type: string
-          description: Unique name of the component ("villain" is good starting point)
-          default: villain
+          description: Unique name of the component ("fight" is good starting point)
+          default: fight
           ui:field: EntityNamePicker
           maxLength: 23
         group_id:
@@ -99,23 +99,23 @@ spec:
         artifact_id:
           title: Artifact Id
           type: string
-          default: villain-service
+          default: fight-service
           description: Maven Artifact Id
         java_package_name:
           title: Java Package Name
           type: string
           description: Name for the java package. eg (com.redhat.blah)
-          default: io.quarkus.workshop.villain
+          default: io.quarkus.workshop.fight
         api_endpoint:
           title: API Endpoint
-          default: /api/villains
+          default: /api/fight
           type: string
           description: Path of the first API Endpoint
         description:
           title: Description
           type: string
           description: Help others understand what this website is for.
-          default: My super villain service
+          default: My super fight service
     # - title: Provide Image Registry Information
     #   required:
     #     - image_registry
