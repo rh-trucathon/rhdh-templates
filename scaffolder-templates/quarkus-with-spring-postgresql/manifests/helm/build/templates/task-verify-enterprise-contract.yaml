@@ -18,7 +18,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: verify-enterprise-contract
+  name: {{ .Values.app.name }}-verify-enterprise-contract
   annotations:
     tekton.dev/displayName: Verify Enterprise Contract
     tekton.dev/pipelines.minVersion: "0.19"

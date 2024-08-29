@@ -112,9 +112,9 @@ data:
 
 {{- if ne .Values.image.registry "Quay" }}
 
-      - name: Get registry-admin token
+      - name: Get {{ .Values.app.name }}-registry-admin token
         shell: |
-          oc get secret $(oc get secret -n {{ "{{" }} component_id {{ "}}" }}-dev | grep registry-admin-token | awk '{print $1}') \
+          oc get secret $(oc get secret -n {{ "{{" }} component_id {{ "}}" }}-dev | grep {{ .Values.app.name }}-registry-admin-token | awk '{print $1}') \
           -n {{ "{{" }} component_id {{ "}}" }}-dev -o json | jq -r .data.token | base64 --decode
         register: r_token
 

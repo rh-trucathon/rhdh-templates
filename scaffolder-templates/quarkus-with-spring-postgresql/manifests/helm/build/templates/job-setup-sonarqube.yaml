@@ -25,7 +25,7 @@ spec:
             valueFrom:
               secretKeyRef:
                 key: password
-                name: common-password-secret
+                name: {{ .Values.app.name }}-common-password-secret
           - name: SONARQUBE_URL
             value: https://sonarqube-sonarqube{{ .Values.app.cluster }}
       restartPolicy: Never
@@ -33,4 +33,4 @@ spec:
       - name: {{ .Values.app.name }}-script-vol
         configMap:
           name: {{ .Values.app.name }}-sonarqube-setup-script
-      serviceAccount: job-runner
+      serviceAccount: {{ .Values.app.name }}-job-runner

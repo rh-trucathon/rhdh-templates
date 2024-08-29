@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: scan-code
+  name: {{ .Values.app.name }}-scan-code
 spec:
   params:
   - default: docker.io/sonarsource/sonar-scanner-cli:11
@@ -27,7 +27,7 @@ spec:
           key: token
           name: $(params.sonarqubeProjectSecret)
     image: $(params.scanImage)
-    name: scan-code
+    name: {{ .Values.app.name }}-scan-code
     script: |
       set -x
       echo $(ls -a)

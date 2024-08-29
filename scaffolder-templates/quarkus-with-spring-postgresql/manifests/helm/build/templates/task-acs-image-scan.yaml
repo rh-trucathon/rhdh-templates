@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: acs-image-scan
+  name: {{ .Values.app.name }}-acs-image-scan
   annotations:
     task.results.format: application/json
     task.results.type: roxctl-image-scan

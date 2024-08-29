@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: acs-deploy-check
+  name: {{ .Values.app.name }}-acs-deploy-check
   annotations:
     task.results.format: application/json
     task.results.type: roxctl-deployment-check
@@ -40,7 +40,7 @@ spec:
       description: Git repository name
       name: git-name
       type: string
-    - default: common-password-secret
+    - default: {{ .Values.app.name }}-common-password-secret
       name: common_password_secret
       type: string
     - default: master

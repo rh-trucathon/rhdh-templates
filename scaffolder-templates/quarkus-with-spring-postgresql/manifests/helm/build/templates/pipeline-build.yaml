@@ -1,10 +1,10 @@
 ---
 apiVersion: tekton.dev/v1beta1
-kind: Pipeline
+kind: {{ .Values.app.name }}-pipeline
 metadata:
   name: {{ .Values.app.name }}-build
   labels:
-    type: pipeline
+    type: {{ .Values.app.name }}-pipeline
     backstage.io/kubernetes-id: {{ .Values.app.name }}
 spec:
   params:
@@ -40,7 +40,7 @@ spec:
       type: string
     - name: git-name
       type: string
-    - name: common-password-secret
+    - name: {{ .Values.app.name }}-common-password-secret
       type: string
     - name: rekor-url
       type: string
@@ -64,7 +64,7 @@ spec:
         - name: output
           workspace: source-folder
 {{- if eq .Values.git.verify_commits "enabled" }}
-    - name: verify-commit
+    - name: {{ .Values.app.name }}-verify-commit
       params:
       - name: certificate-identity
         value: $(params.certificate-identity)
@@ -78,13 +78,13 @@ spec:
         - git-clone
       taskRef:
         kind: Task
-        name: verify-commit
+        name: {{ .Values.app.name }}-verify-commit
       workspaces:
         - name: repository
           workspace: source-folder
     - name: package
       runAfter:
-        - verify-commit
+        - {{ .Values.app.name }}-verify-commit
 {{- else }}
     - name: package
       params:
@@ -118,7 +118,7 @@ spec:
       - package
       taskRef:
         kind: Task
-        name: scan-code
+        name: {{ .Values.app.name }}-scan-code
       workspaces:
       - name: repository
         workspace: source-folder
@@ -130,11 +130,11 @@ spec:
       - scan-source
       taskRef:
         kind: Task
-        name: buildah
+        name:{{ .Values.app.name }}-buildah
       workspaces:
       - name: source
         workspace: source-folder
-    - name: acs-image-check
+    - name: {{ .Values.app.name }}-acs-deploy-check
       params:
       - name: rox_central_endpoint
         value: $(params.stackrox-endpoint)
@@ -150,11 +150,11 @@ spec:
       - build-sign-image
       taskRef:
         kind: Task
-        name: acs-image-check
+        name: {{ .Values.app.name }}-acs-deploy-check
       workspaces:
       - name: reports
         workspace: reports
-    - name: acs-image-scan
+    - name: {{ .Values.app.name }}-acs-image-scan
       params:
       - name: rox_central_endpoint
         value: $(params.stackrox-endpoint)
@@ -170,11 +170,11 @@ spec:
       - build-sign-image
       taskRef:
         kind: Task
-        name: acs-image-scan
+        name: {{ .Values.app.name }}-acs-image-scan
       workspaces:
       - name: reports
         workspace: reports
-    - name: acs-deploy-check
+    - name: {{ .Values.app.name }}-acs-deploy-check
       params:
       - name: rox_central_endpoint
         value: $(params.stackrox-endpoint)
@@ -194,25 +194,25 @@ spec:
         value: "true"
       taskRef:
         kind: Task
-        name: acs-deploy-check
+        name: {{ .Values.app.name }}-acs-deploy-check
       runAfter:
       - build-sign-image
       workspaces:
       - name: reports
         workspace: reports
-    - name: scan-export-sbom
+    - name: {{ .Values.app.name }}-scan-export-sbom
       params:
       - name: cyclonedxHostUrl
         value: $(params.cyclonedx-host-url)
       - name: image
         value: {{ include "sha-image.dev-url" . }}@$(tasks.build-sign-image.results.IMAGE_DIGEST)
       runAfter:
-      - acs-image-check
-      - acs-image-scan
-      - acs-deploy-check
+      - {{ .Values.app.name }}-acs-deploy-check
+      - {{ .Values.app.name }}-acs-image-scan
+      - {{ .Values.app.name }}-acs-deploy-check
       taskRef:
         kind: Task
-        name: scan-export-sbom
+        name: {{ .Values.app.name }}-scan-export-sbom
       workspaces:
       - name: repository
         workspace: source-folder
@@ -224,21 +224,21 @@ spec:
         value: $(params.rekor-url)
       taskRef:
         kind: Task
-        name: rekor-signed-provenance
+        name:{{ .Values.app.name }}-rekor-signed-provenance
       runAfter:
-      - acs-image-check
-      - acs-image-scan
-      - acs-deploy-check
-    - name: resync
+      - {{ .Values.app.name }}-acs-deploy-check
+      - {{ .Values.app.name }}-acs-image-scan
+      - {{ .Values.app.name }}-acs-deploy-check
+    - name: {{ .Values.app.name }}-resync
       params:
       - name: COMPONENT_ID
         value: $(params.component-id)
       runAfter:
-      - scan-export-sbom
+      - {{ .Values.app.name }}-scan-export-sbom
       - query-rekor-signed-provenance
       taskRef:
         kind: Task
-        name: resync
+        name: {{ .Values.app.name }}-resync
   results:
     - name: IMAGE_URL
       value: "$(tasks.build-sign-image.results.IMAGE_URL)"

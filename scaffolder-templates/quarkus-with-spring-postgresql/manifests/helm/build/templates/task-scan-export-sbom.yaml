@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: scan-export-sbom
+  name: {{ .Values.app.name }}-scan-export-sbom
   annotations:
     task.results.format: application/text
     task.results.type: external-link

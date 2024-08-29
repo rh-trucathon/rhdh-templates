@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: acs-image-check
+  name: {{ .Values.app.name }}-acs-deploy-check
   annotations:
     task.results.format: application/json
     task.results.type: roxctl-image-check

@@ -17,7 +17,7 @@ spec:
       description: Email of user who committed the change
   resourcetemplates:
     - apiVersion: tekton.dev/v1beta1
-      kind: PipelineRun
+      kind: {{ .Values.app.name }}-pipelineRun
       metadata:
         generateName: {{ .Values.app.name }}-run-build-
         labels:
@@ -50,8 +50,8 @@ spec:
             value: {{ .Values.app.name }}
           - name: git-name
             value: {{ .Values.git.name }}
-          - name: common-password-secret
-            value: common-password-secret
+          - name: {{ .Values.app.name }}-common-password-secret
+            value: {{ .Values.app.name }}-common-password-secret
           - name: rekor-url
             value: http://rekor-server.trusted-artifact-signer.svc
           - name: tuf-mirror
@@ -60,9 +60,9 @@ spec:
             value: $(tt.params.git-committer)
           - name: oidc-issuer
             value:  https://keycloak-keycloak-system{{ .Values.app.cluster }}/auth/realms/trusted-artifact-signer
-        pipelineRef:
+        {{ .Values.app.name }}-pipelineRef:
           name: {{ .Values.app.name }}-build
-        serviceAccountName: pipeline
+        serviceAccountName: {{ .Values.app.name }}-pipeline
         timeout: 1h0m0s
         workspaces:
           - name: reports

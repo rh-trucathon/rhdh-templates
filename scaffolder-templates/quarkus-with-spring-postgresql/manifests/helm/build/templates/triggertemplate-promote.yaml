@@ -19,7 +19,7 @@ spec:
       description: The target namespace being deployed to
   resourcetemplates:
     - apiVersion: tekton.dev/v1beta1
-      kind: PipelineRun
+      kind: {{ .Values.app.name }}-pipelineRun
       metadata:
         generateName: {{ .Values.app.name }}-run-promote-
         labels:
@@ -27,8 +27,8 @@ spec:
       spec:
 {{- if eq .Values.image.registry "Quay" }}
         taskRunSpecs:
-        - pipelineTaskName: verify-enterprise-contract
-          taskServiceAccountName: job-runner
+        - {{ .Values.app.name }}-pipelineTaskName: {{ .Values.app.name }}-verify-enterprise-contract
+          taskServiceAccountName: {{ .Values.app.name }}-job-runner
 {{- end }}
         params:
           - name: source-image
@@ -47,8 +47,8 @@ spec:
             value: {{ .Values.git.org }}
           - name: component-id
             value: {{ .Values.app.name }}
-          - name: common-password-secret
-            value: common-password-secret
+          - name: {{ .Values.app.name }}-common-password-secret
+            value: {{ .Values.app.name }}-common-password-secret
           - name: argocd-host
             value: argocd-server-janus-argocd{{ .Values.app.cluster }}
           - name: policy-configuration
@@ -57,9 +57,9 @@ spec:
             value: http://rekor-server.trusted-artifact-signer.svc
           - name: tuf_mirror
             value: http://tuf.trusted-artifact-signer.svc
-        pipelineRef:
+        {{ .Values.app.name }}-pipelineRef:
           name: {{ .Values.app.name }}-promote
-        serviceAccountName: image-pusher
+        serviceAccountName: {{ .Values.app.name }}-image-pusher
         timeout: 1h0m0s
         workspaces:
           - name: images-url

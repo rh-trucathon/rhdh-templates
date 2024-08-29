@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: verify-commit
+  name: {{ .Values.app.name }}-verify-commit
 spec:
   params:
   - description: TUF mirror

@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.app.name }}-jobrunner-edit
 subjects:
   - kind: ServiceAccount
-    name: job-runner
+    name: {{ .Values.app.name }}-job-runner
     # namespace: {{ .Values.app.name }}-dev
     namespace: {{ .Values.app.namespace }}
 roleRef:

@@ -4,11 +4,11 @@ kind: EventListener
 metadata:
   name: {{ .Values.app.name }}-el
 spec:
-  serviceAccountName: pipeline
+  serviceAccountName: {{ .Values.app.name }}-pipeline
   triggers:
     - bindings:
         - kind: TriggerBinding
-          ref: commit-binding
+          ref: {{ .Values.app.name }}-commit-binding
       interceptors:
         - params:
             - name: filter
@@ -23,7 +23,7 @@ spec:
         ref: {{ .Values.app.name }}-run-build
     - bindings:
         - kind: TriggerBinding
-          ref: tag-binding-preprod
+          ref: {{ .Values.app.name }}-tag-binding-preprod
       interceptors:
         - params:
             - name: filter
@@ -40,7 +40,7 @@ spec:
         ref: {{ .Values.app.name }}-run-promote
     - bindings:
         - kind: TriggerBinding
-          ref: tag-binding-prod
+          ref: {{ .Values.app.name }}-tag-binding-prod
       interceptors:
         - params:
             - name: filter

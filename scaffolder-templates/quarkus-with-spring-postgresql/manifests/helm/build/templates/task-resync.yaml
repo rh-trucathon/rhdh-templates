@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: resync
+  name: {{ .Values.app.name }}-resync
 spec:
   params:
     - description: The component id
@@ -15,5 +15,5 @@ spec:
         - /bin/bash
         - '-c'
       image: 'quay.io/openshift/origin-cli:latest'
-      name: resync
+      name: {{ .Values.app.name }}-resync
       resources: {}

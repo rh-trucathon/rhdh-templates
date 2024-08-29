@@ -30,7 +30,7 @@ spec:
             valueFrom:
               secretKeyRef:
                 key: password
-                name: common-password-secret
+                name: {{ .Values.app.name }}-common-password-secret
           - name: CENTRAL_STACKROX_URL
             value: https://central-stackrox{{ .Values.app.cluster }}
 
@@ -39,4 +39,4 @@ spec:
       - name: {{ .Values.app.name }}-script-vol
         configMap:
           name: {{ .Values.app.name }}-stackrox-setup-script
-      serviceAccount: job-runner
+      serviceAccount: {{ .Values.app.name }}-job-runner

@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: update-deployment
+  name: {{ .Values.app.name }}-update-deployment
 spec:
   params:
     - default: gitlab-gitlab.apps.cluster-jh82x.sandbox1737.opentlc.com
@@ -16,9 +16,9 @@ spec:
       description: The name of the component
       name: component-id
       type: string
-    - default: common-password-secret
+    - default: {{ .Values.app.name }}-common-password-secret
       description: Common password used in demo
-      name: common-password-secret
+      name: {{ .Values.app.name }}-common-password-secret
       type: string
     - description: Namespace
       name: namespace
