@@ -1,0 +1,16 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    {{- include "fight-ui.labels" . | nindent 4 }}
+  name: ${{values.deployment_name}}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: ${{values.deployment_name}}
+  endpoints:
+    - scheme: http
+      targetPort: 8080
+      path: /q/metrics
+      interval: 10s
+      honorLabels: true
