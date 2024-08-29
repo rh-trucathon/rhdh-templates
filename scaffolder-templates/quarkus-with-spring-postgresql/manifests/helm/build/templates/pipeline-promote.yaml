@@ -47,7 +47,7 @@ spec:
       type: string
   tasks:
 {{- if eq .Values.image.registry "Quay" }}
-    - name: {{ .Values.app.name }}-verify-enterprise-contract
+    - name: verify-enterprise-contract
       params:
         - name: IMAGE
           value: '$(params.source-image):$(params.source-image-tag)'
