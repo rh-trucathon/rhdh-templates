@@ -130,7 +130,7 @@ spec:
       - scan-source
       taskRef:
         kind: Task
-        name:{{ .Values.app.name }}-buildah
+        name: {{ .Values.app.name }}-buildah
       workspaces:
       - name: source
         workspace: source-folder
@@ -224,7 +224,7 @@ spec:
         value: $(params.rekor-url)
       taskRef:
         kind: Task
-        name:{{ .Values.app.name }}-rekor-signed-provenance
+        name: {{ .Values.app.name }}-rekor-signed-provenance
       runAfter:
       - {{ .Values.app.name }}-acs-deploy-check
       - {{ .Values.app.name }}-acs-image-scan

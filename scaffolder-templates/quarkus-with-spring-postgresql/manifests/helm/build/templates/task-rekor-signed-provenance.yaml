@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name:{{ .Values.app.name }}-rekor-signed-provenance
+  name: {{ .Values.app.name }}-rekor-signed-provenance
 spec:
   params:
     - name: imageDigest
