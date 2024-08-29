@@ -76,7 +76,7 @@ spec:
         kind: ClusterTask
         name: skopeo-copy
       runAfter:
-        - {{ .Values.app.name }}-verify-enterprise-contract
+        - verify-enterprise-contract
       workspaces:
         - name: images-url
           workspace: images-url
