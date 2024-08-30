@@ -229,7 +229,7 @@ spec:
           cluster: .${{ parameters.openshiftCluster }}
           host: ${{ parameters.repo.host }}.${{ parameters.openshiftCluster }}
           destination: '${{ user.entity.metadata.name }}/${{ parameters.component_id }}'
-          quay_destination: ${{ parameters.image_organization}}/${{ parameters.component_id }}
+          quay_destination: ${{ parameters.image_organization}}/${{ user.entity.metadata.name }}-${{ parameters.component_id }}
           port: 8080
           verify_commits: ${{ parameters.repo.verify_commits }}
           api_endpoint: ${{ parameters.api_endpoint }}
