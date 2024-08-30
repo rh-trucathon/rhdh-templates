@@ -77,3 +77,9 @@ commands:
       group:
         kind: run
         isDefault: true
+
+  - id: install-quarkus
+    exec:
+      label: "Quarkus install"
+      component: development-tooling
+      commandLine: "sdk install quarkus"
