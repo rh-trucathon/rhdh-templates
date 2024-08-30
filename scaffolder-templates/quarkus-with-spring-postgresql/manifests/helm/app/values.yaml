@@ -14,7 +14,7 @@ image:
   registry: Quay
   host: ${{values.image_host}}
   organization: ${{values.image_organization}}
-  name: ${{values.user}}/${{values.image_name}}
+  name: ${{values.user}}-${{values.image_name}}
   # Overrides the image tag whose default is the chart appVersion.
 
 imagePullSecrets: []
