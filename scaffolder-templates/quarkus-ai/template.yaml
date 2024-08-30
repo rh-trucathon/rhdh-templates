@@ -49,7 +49,7 @@ spec:
                   title: Organization
                   type: string
                   description: Name of the Quay Organization
-#                  default: quayadmin
+                  default: quayadmin
                 image_tag:
                   title: Image Tag
                   default: latest
@@ -70,7 +70,7 @@ spec:
                   title: Organization
                   type: string
                   description: Name of the Quay Organization
-#                  default: quayadmin
+                  default: quayadmin
                 image_tag:
                   title: Image Tag
                   default: latest
@@ -91,7 +91,7 @@ spec:
                   title: Organization
                   type: string
                   description: Name of the Quay Organization
-#                  default: quayadmin
+                  default: quayadmin
                 image_tag:
                   title: Image Tag
                   default: latest

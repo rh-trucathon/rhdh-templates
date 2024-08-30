@@ -19,5 +19,5 @@ image:
   registry: Quay
   organization: ${{values.image_organization}}
   host: ${{ values.image_host }}
-  name: ${{ values.image_name }}
+  name: ${{values.user}}-${{values.image_name}}
   tag: ${{ values.image_tag }}
