@@ -2,7 +2,7 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: opencodequest-fight-ui
-  title: "OpenCodeQuest - Fight-UI service"
+  title: "AI-Infused application with Quarkus"
   description: "Deploy the fight UI service"
   tags:
     - nodejs

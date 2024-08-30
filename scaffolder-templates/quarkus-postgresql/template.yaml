@@ -2,7 +2,7 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: opencodequest-quarkus-postgresql
-  title: "OpenCodeQuest - Quarkus with Postgresql"
+  title: "OpenCodeQuest - Quarkus CRUD microservice"
   description: "Create a Quarkus-rest microservice with Postgresql"
   tags:
     - recommended

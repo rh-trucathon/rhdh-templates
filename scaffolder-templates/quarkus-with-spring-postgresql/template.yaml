@@ -2,7 +2,7 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: opencodequest-quarkus-with-spring-postgresql
-  title: "OpenCodeQuest - Quarkus using Spring Extension with Postgresql"
+  title: "OpenCodeQuest - Quarkus microservice with Spring MVC and Spring Data"
   description: "Create a Quarkus with Spring extension microservice with Postgresql"
   tags:
     - recommended
