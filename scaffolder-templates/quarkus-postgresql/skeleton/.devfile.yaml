@@ -82,4 +82,4 @@ commands:
     exec:
       label: "Quarkus install"
       component: development-tooling
-      commandLine: "sdk install quarkus"
+      commandLine: "source /home/tooling/.sdkman/bin/sdkman-init.sh && sdk install quarkus"
