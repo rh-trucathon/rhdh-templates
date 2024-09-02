@@ -60,7 +60,7 @@ spec:
             value: $(tt.params.git-committer)
           - name: oidc-issuer
             value:  https://keycloak-keycloak-system{{ .Values.app.cluster }}/auth/realms/trusted-artifact-signer
-        {{ .Values.app.name }}-pipelineRef:
+        pipelineRef:
           name: {{ .Values.app.name }}-build
         serviceAccountName: {{ .Values.app.name }}-pipeline
         timeout: 1h0m0s
