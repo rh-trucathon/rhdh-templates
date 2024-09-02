@@ -77,7 +77,7 @@ spec:
             - properties:
                 openshiftCluster:
                   enum:
-                    - apps.cluster-v9s95.v9s95.sandbox823.opentlc.comcom
+                    - apps.cluster-v9s95.v9s95.sandbox823.opentlc.com
                 image_host:
                   title: Image Host
                   type: string
