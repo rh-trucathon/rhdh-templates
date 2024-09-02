@@ -2,7 +2,7 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: opencodequest-quarkus-with-AI
-  title: "OpenCodeQuest - Quarkus with AI"
+  title: "OpenCodeQuest - AI-Infused application with Quarkus"
   description: "Create a quarkus intelligent application"
   tags:
     - recommended
