@@ -77,14 +77,14 @@ spec:
             - properties:
                 openshiftCluster:
                   enum:
-                    - apps.cluster-c6lk8.c6lk8.sandbox972.opentlc.com
+                    - apps.cluster-v9s95.v9s95.sandbox823.opentlc.comcom
                 image_host:
                   title: Image Host
                   type: string
                   description: Host for storing image
                   enum: 
-                    - quay-c6lk8.apps.cluster-c6lk8.c6lk8.sandbox972.opentlc.com
-                  default: quay-c6lk8.apps.cluster-c6lk8.c6lk8.sandbox972.opentlc.com
+                    - quay-v9s95.apps.cluster-v9s95.v9s95.sandbox823.opentlc.com
+                  default: quay-v9s95.apps.cluster-v9s95.v9s95.sandbox823.opentlc.com
                 image_organization:
                   title: Organization
                   type: string
