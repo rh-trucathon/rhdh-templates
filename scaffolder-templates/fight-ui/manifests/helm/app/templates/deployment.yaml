@@ -41,12 +41,12 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
-            # - name: QUARKUS_ENDPOINTS_HEROES
-            #   value: TOBECONFIGURED
-            # - name: QUARKUS_ENDPOINTS_VILLAINS
-            #   value: TOBECONFIGURED
-            # - name: QUARKUS_ENDPOINTS_FIGHT
-            #   value: TOBECONFIGURED
+            - name: ENDPOINTS_HEROES
+              value: http://${{values.user}}-hero-{{ .Values.environment }}:8080/api/heroes/random
+            - name: ENDPOINTS_VILLAINS
+              value: http://${{values.user}}-villain-{{ .Values.environment }}:8080/api/villains/random
+            - name: ENDPOINTS_FIGHT
+              value: http://${{values.user}}-fight-{{ .Values.environment }}:8080/api/fights
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
