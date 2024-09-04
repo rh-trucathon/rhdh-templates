@@ -5,14 +5,13 @@ metadata:
   title: "OpenCodeQuest - AI-Infused application with Quarkus"
   description: "Create a quarkus intelligent application"
   tags:
-    - recommended
     - java
     - quarkus
-    - maven
     - trucathon
     - opencodequest
     - ai
     - intelligent
+    - fight-service
 spec:
   owner: rhdh
   type: service
