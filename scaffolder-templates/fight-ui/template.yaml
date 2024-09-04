@@ -5,7 +5,6 @@ metadata:
   title: "OpenCodeQuest - Fight-UI service"
   description: "Deploy the fight UI service"
   tags:
-    - trucathon
     - opencodequest
     - fight-ui-service
 spec:
