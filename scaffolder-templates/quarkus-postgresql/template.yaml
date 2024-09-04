@@ -5,10 +5,10 @@ metadata:
   title: "OpenCodeQuest - Quarkus CRUD microservice"
   description: "Create a Quarkus-rest microservice with Postgresql"
   tags:
+    - hero-service
     - java
     - quarkus
     - opencodequest
-    - hero-service
 spec:
   owner: rhdh
   type: service

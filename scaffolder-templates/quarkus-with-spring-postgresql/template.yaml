@@ -5,10 +5,10 @@ metadata:
   title: "OpenCodeQuest - Quarkus microservice with Spring MVC and Spring Data"
   description: "Create a Quarkus with Spring extension microservice with Postgresql"
   tags:
+    - villain-service
     - java
     - quarkus
     - opencodequest
-    - villain-service
 spec:
   owner: rhdh
   type: service

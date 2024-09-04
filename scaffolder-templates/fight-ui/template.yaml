@@ -5,8 +5,8 @@ metadata:
   title: "OpenCodeQuest - Fight-UI service"
   description: "Deploy the fight UI service"
   tags:
-    - opencodequest
     - fight-ui-service
+    - opencodequest
 spec:
   owner: rhdh
   type: service
