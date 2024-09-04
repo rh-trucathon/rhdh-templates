@@ -1,8 +1,8 @@
-package ${{values.java_package_name}};
+package io.quarkus.workshop.hero;
 
 import io.quarkus.test.junit.QuarkusIntegrationTest;
 
 @QuarkusIntegrationTest
-class ${{values.component_id}}ResourceIT extends ${{values.component_id}}ResourceTest {
+class HeroResourceIT extends HeroResourceTest {
     // Execute the same tests but in packaged mode.
 }

@@ -1,4 +1,4 @@
-package ${{values.java_package_name}};
+package io.quarkus.workshop.hero;
 
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
@@ -7,7 +7,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 
 @QuarkusTest
-public class ${{values.component_id}}ResourceTest {
+public class HeroResourceTest {
     @Test
     void testHelloEndpoint() {
         given()

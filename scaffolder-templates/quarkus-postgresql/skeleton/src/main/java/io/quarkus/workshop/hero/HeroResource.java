@@ -1,4 +1,4 @@
-package ${{values.java_package_name}};
+package io.quarkus.workshop.hero;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
@@ -6,7 +6,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 
 @Path("${{values.api_endpoint}}")
-public class ${{values.component_id}}Resource {
+public class HeroResource {
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
