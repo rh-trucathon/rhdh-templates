@@ -73,7 +73,7 @@ commands:
     exec:
       label: "Quarkus config"
       component: development-tooling
-      commandLine: "sed -i \"s/SOMETHING/$(oc get dw -o=jsonpath='{.items[?(@.status.phase==\"Running\")]}'|jq -r '.metadata.name')/\" /projects/*/src/main/resources/application.properties"
+      commandLine: "sed -i \"s/SOMETHING/$(oc get dw --sort-by=.metadata.creationTimestamp -o jsonpath='{.items[0].metadata.name}')/\" /projects/*/src/main/resources/application.properties"
       group:
         kind: run
         isDefault: true
@@ -83,3 +83,9 @@ commands:
       label: "Quarkus install"
       component: development-tooling
       commandLine: "source /home/tooling/.sdkman/bin/sdkman-init.sh && sdk install quarkus"
+
+
+events:
+  postStart:
+    - quarkus-devservices-config
+    - install-quarkus
