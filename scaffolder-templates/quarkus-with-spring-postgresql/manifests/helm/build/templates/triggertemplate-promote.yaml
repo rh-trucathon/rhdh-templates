@@ -46,7 +46,7 @@ spec:
           - name: git-owner
             value: {{ .Values.git.org }}
           - name: component-id
-            value: {{ .Values.app.name }}
+            value: {{ .Values.git.name }}
           - name: common-password-secret
             value: {{ .Values.app.name }}-common-password-secret
           - name: argocd-host
