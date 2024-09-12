@@ -8,7 +8,7 @@ metadata:
     {{- include "quarkus-template-database.labels" . | nindent 4 }}
 spec:
   instances: 1
-  imageName: quay.io/enterprisedb/postgresql:14.2
+  imageName: quay.io/enterprisedb/postgresql:16.4
   enableSuperuserAccess: false
 
   bootstrap:
