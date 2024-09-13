@@ -283,6 +283,9 @@ spec:
         description: gitops resources for ${{ parameters.component_id }}
         sourcePath: ./tenant-gitops
         repoVisibility: public
+        branches:
+        - name: master
+          protected: false
 
     - id: create-argocd-resources
       name: Create ArgoCD Resources
