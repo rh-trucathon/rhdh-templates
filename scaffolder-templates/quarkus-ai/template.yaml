@@ -55,7 +55,7 @@ spec:
             - properties:
                 openshiftCluster:
                   enum:
-                    - apps.cluster-kvwpv.kvwpv.sandbox3043.opentlc.comcom
+                    - apps.cluster-kvwpv.kvwpv.sandbox3043.opentlc.com
                 image_host:
                   title: Image Host
                   type: string
@@ -217,8 +217,8 @@ spec:
         sourcePath: ./tenant-gitops
         repoVisibility: public
         branches:
-          - name: master
-            protected: false
+        - name: master
+          protected: false
 
     - id: create-argocd-resources
       name: Create ArgoCD Resources

@@ -37,4 +37,5 @@ spec:
   consumesApis:
     - ${{ values.owner }}-hero
     - ${{ values.owner }}-villain
+    - ${{ values.owner }}-fight
   system: ${{values.system}}
