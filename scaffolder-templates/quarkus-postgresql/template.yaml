@@ -148,7 +148,7 @@ spec:
         values:
           component_id: ${{ parameters.component_id }}
           description: ${{ parameters.description }}
-          namespace: '${{ user.entity.metadata.name }}-${{ parameters.component_id }}-dev'
+          namespace: '${{ user.entity.metadata.name }}-workshop-dev'
           group_id: ${{ parameters.group_id }}
           artifact_id: ${{ parameters.artifact_id }}
           java_package_name: ${{ parameters.java_package_name }}
