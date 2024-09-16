@@ -31,7 +31,7 @@ metadata:
     - url: https://devspaces${{values.cluster}}/#https://${{values.host}}/${{values.destination}}
       title: OpenShift Dev Spaces (VS Code)
       icon: web
-    - url: https://console-openshift-console${{values.cluster}}
+    - url: https://console-openshift-console${{values.cluster}}/topology/ns/${{values.namespace}}?view=graph
       title: Console OpenShift
       icon: web
     # - url: https://devspaces${{values.cluster}}/#https://${{values.host}}/${{values.destination}}?che-editor=che-incubator/che-idea/latest
