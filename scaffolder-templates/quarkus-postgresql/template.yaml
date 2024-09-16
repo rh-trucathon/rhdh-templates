@@ -24,8 +24,7 @@ spec:
           title: OpenShift Clusters
           type: string
           enum:
-            # - apps.cluster-9hbm4.9hbm4.sandbox2969.opentlc.com
-            # - apps.cluster-v9s95.v9s95.sandbox823.opentlc.com
+            - apps.cluster-kvwpv.kvwpv.sandbox3043.opentlc.com
             - apps.cluster-rw97m.sandbox266.opentlc.com
       dependencies:
         openshiftCluster:
@@ -54,35 +53,14 @@ spec:
             - properties:
                 openshiftCluster:
                   enum:
-                    - apps.cluster-9hbm4.9hbm4.sandbox2969.opentlc.com
+                    - apps.cluster-kvwpv.kvwpv.sandbox3043.opentlc.com
                 image_host:
                   title: Image Host
                   type: string
                   description: Host for storing image
                   enum: 
-                    - quay-9hbm4.apps.cluster-9hbm4.9hbm4.sandbox2969.opentlc.com
-                  default: quay-9hbm4.apps.cluster-9hbm4.9hbm4.sandbox2969.opentlc.com
-                image_organization:
-                  title: Organization
-                  type: string
-                  description: Name of the Quay Organization
-                  default: quayadmin
-                image_tag:
-                  title: Image Tag
-                  default: latest
-                  type: string
-                  description: Build Image tag
-            - properties:
-                openshiftCluster:
-                  enum:
-                    - apps.cluster-v9s95.v9s95.sandbox823.opentlc.com
-                image_host:
-                  title: Image Host
-                  type: string
-                  description: Host for storing image
-                  enum: 
-                    - quay-v9s95.apps.cluster-v9s95.v9s95.sandbox823.opentlc.com
-                  default: quay-v9s95.apps.cluster-v9s95.v9s95.sandbox823.opentlc.com
+                    - quay-kvwpv.apps.cluster-kvwpv.kvwpv.sandbox3043.opentlc.com
+                  default: quay-kvwpv.apps.cluster-kvwpv.kvwpv.sandbox3043.opentlc.com
                 image_organization:
                   title: Organization
                   type: string
@@ -134,52 +112,6 @@ spec:
           type: string
           description: Help others understand what this website is for.
           default: My super heroes service
-    # - title: Provide Image Registry Information
-    #   required:
-    #     - image_registry
-    #   properties:
-    #     image_registry:
-    #       title: Image Registry
-    #       type: string
-    #       enum:
-    #         - Openshift
-    #         - Quay
-    #   dependencies:
-    #     image_registry:
-    #       oneOf:
-    #         - properties:
-    #             image_registry:
-    #               enum:
-    #                 - Openshift
-    #             image_host:
-    #               title: Image Host
-    #               type: string
-    #               description: Host for storing image
-    #               default: image-registry.openshift-image-registry.svc:5000
-    #             image_tag:
-    #               title: Image Tag
-    #               default: latest
-    #               type: string
-    #               description: Build Image tag
-    #         - properties:
-    #             image_registry:
-    #               enum:
-    #                 - Quay
-    #             image_host:
-    #               title: Image Host
-    #               type: string
-    #               description: Host for storing image
-    #               default: quay-rw97m.apps.cluster-rw97m.sandbox266.opentlc.com
-    #             image_organization:
-    #               title: Organization
-    #               type: string
-    #               description: Name of the Quay Organization
-    #               default: quayadmin
-    #             image_tag:
-    #               title: Image Tag
-    #               default: latest
-    #               type: string
-    #               description: Build Image tag
     - title: Application repository Information
       required:
         - repo
@@ -260,7 +192,6 @@ spec:
           repository_name: ${{parameters.component_id}}
           git_owner: '${{ user.entity.metadata.name }}'
           cluster: .${{ parameters.openshiftCluster }}
-          # namespace: ${{ parameters.component_id }}-dev
           namespace: ${{ user.entity.metadata.name }}-workshop-dev
           image_registry: ${{ parameters.image_registry }}
           image_host: ${{ parameters.image_host }}
