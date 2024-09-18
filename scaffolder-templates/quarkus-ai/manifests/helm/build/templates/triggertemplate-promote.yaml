@@ -27,7 +27,7 @@ spec:
       spec:
 {{- if eq .Values.image.registry "Quay" }}
         taskRunSpecs:
-        - pipelineTaskName: {{ .Values.app.name }}-verify-enterprise-contract
+        - pipelineTaskName: verify-enterprise-contract
           taskServiceAccountName: {{ .Values.app.name }}-job-runner
 {{- end }}
         params:

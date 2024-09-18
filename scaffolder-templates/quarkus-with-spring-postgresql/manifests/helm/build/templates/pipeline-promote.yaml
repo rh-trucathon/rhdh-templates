@@ -90,7 +90,7 @@ spec:
           value:  $(params.git-owner)
         - name: component-id
           value:  $(params.component-id)
-        - name: {{ .Values.app.name }}-common-password-secret
+        - name: common-password-secret
           value:  $(params.common-password-secret)
         - name: image-tag
           value: $(params.destination-image-tag)
