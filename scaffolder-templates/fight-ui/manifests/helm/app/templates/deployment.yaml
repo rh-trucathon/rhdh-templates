@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "fight-ui.fullname" . }}
+  name: ${{ values.component_id }}
   labels:
     {{- include "backstage.labels" . | nindent 4 }}
     {{- include "fight-ui.labels" . | nindent 4 }}
