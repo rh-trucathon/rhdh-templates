@@ -3,7 +3,7 @@ kind: ServiceMonitor
 metadata:
   labels:
     {{- include "fight-ui.labels" . | nindent 4 }}
-  name: {{ include "fight-ui.fullname" . }}
+  name: ${{ values.component_id }}
 spec:
   selector:
     matchLabels:
