@@ -48,7 +48,7 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
-{{- if not (eq .Values.environment "prod") -}}
+{{- if not (eq .Values.environment "prod") }}
             - name: POSTGRESQL_USERNAME
               valueFrom:
                 secretKeyRef:
