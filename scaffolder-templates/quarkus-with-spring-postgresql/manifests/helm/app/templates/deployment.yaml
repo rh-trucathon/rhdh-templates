@@ -48,7 +48,6 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
-{{- if not (eq .Values.environment "prod") }}
             - name: POSTGRESQL_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -69,28 +68,6 @@ spec:
                 secretKeyRef:
                   name: ${{values.deployment_name}}-database-app
                   key: jdbc-uri
-{{- else }}
-            - name: POSTGRESQL_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: cluster-edb-prod-app
-                  key: username
-            - name: POSTGRESQL_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: cluster-edb-prod-app
-                  key: password
-            - name: POSTGRESQL_DATABASE
-              valueFrom:
-                secretKeyRef:
-                  name: cluster-edb-prod-app
-                  key: dbname
-            - name: QUARKUS_DATASOURCE_JDBC_URL
-              valueFrom:
-                secretKeyRef:
-                  name: cluster-edb-prod-app
-                  key: jdbc-uri
-{{- end }}
             - name: QUARKUS_HIBERNATE_ORM_DATABASE_GENERATION
               value: "update"
       {{- with .Values.nodeSelector }}

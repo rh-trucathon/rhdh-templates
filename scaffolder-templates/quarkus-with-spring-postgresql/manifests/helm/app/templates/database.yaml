@@ -26,4 +26,19 @@ spec:
     limits:
       memory: "128Mi"
       cpu: "400m"
+{{- else }}
+kind: Secret
+apiVersion: v1
+metadata:
+  name: ${{values.deployment_name}}-database-app
+  labels:
+    {{- include "backstage.labels" . | nindent 4 }}
+    {{- include "quarkus-template-database.labels" . | nindent 4 }}
+stringData:
+  port: '5432'
+  dbname: ${{values.deployment_name}}
+  username: app_user
+  password: 'DevZone2024#'
+  jdbc-uri: 'jdbc:postgresql://cluster-edb-prod-rw.edb-workshop-prod:5432/${{values.deployment_name}}?password=DevZone2024#&user=app_user'
+type: kubernetes.io/basic-auth
 {{- end }}
