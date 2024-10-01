@@ -39,6 +39,6 @@ stringData:
   dbname: ${{values.deployment_name}}
   username: app_user
   password: 'DevZone2024#'
-  jdbc-uri: 'jdbc:postgresql://cluster-edb-prod-rw.edb-workshop-prod:5432/${{values.deployment_name}}?password=DevZone2024#&user=app_user'
+  jdbc-uri: 'jdbc:postgresql://cluster-edb-prod-rw.edb-database-prod:5432/${{values.deployment_name}}?password=DevZone2024#&user=app_user'
 type: kubernetes.io/basic-auth
 {{- end }}
